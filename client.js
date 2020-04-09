@@ -1,5 +1,5 @@
 const net = require('net');
-const setupInput = require('./input');
+const stdin = process.stdin;
 /**
  * Establishes connection with the game server
  */
@@ -13,13 +13,16 @@ const connect = function() {
     console.log("successfully connected to game server");
   });
 
+
   conn.on('connect', () => {
     console.log("You are connected");
     console.log("Name: JC"); 
     conn.write("Name: JC"); 
-    // setInterval(() => {
-    //   conn.write('Move:')}, 500);
     
+  });
+
+  conn.on('connect', () => {
+    conn.write("Say: Do you like me?")
   });
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
